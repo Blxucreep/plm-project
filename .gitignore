@@ -1,2 +1,2 @@
-# ignore /base directory
-/base/
+# ignore /__pycache__ directories
+__pycache__/

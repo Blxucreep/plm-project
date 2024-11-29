@@ -1,0 +1,261 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Style de l'en-tête */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 0;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+nav ul li {
+    margin-left: 20px;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Bannière */
+.banner {
+    background: url("images/banner.jpg") no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+}
+.banner h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.banner p {
+    font-size: 18px;
+}
+
+/* Grille de produits */
+.product-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.product-button:hover {
+    background-color: #444;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+.product-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+.product-card:hover {
+    transform: scale(1.05);
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.product-card h3 {
+    font-size: 20px;
+    margin: 15px 0;
+}
+.product-card p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+.product-card button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.product-card button:hover {
+    background-color: #444;
+}
+
+/* Section à propos */
+.about {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f1f1f1;
+}
+.about h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+.about p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* ----------------------------------------------------------------------- */
+
+
+/* En-tête de retour */
+.product-header {
+    background-color: #000;
+    padding: 10px 0;
+}
+.back-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding-left: 20px;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Détails du produit */
+.product-detail {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.product-info img {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+}
+.product-description {
+    max-width: 600px;
+}
+.product-description h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+.product-description p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+.buy-button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.buy-button:hover {
+    background-color: #444;
+}
+
+/* Section Voir aussi */
+.related-products {
+    padding: 50px 20px;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+.related-products h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.related-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.related-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.related-card h3 {
+    font-size: 20px;
+    margin: 15px 0;
+}
+.related-card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+.related-button {
+    padding: 8px 15px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.related-button:hover {
+    background-color: #444;
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+}
