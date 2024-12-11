@@ -1,0 +1,481 @@
+[
+    {
+        "model": "plm.creditcards",
+        "pk": 1,
+        "fields": {
+            "card": "1234567891234567",
+            "expiry_date": "2025-12-31"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 1,
+        "fields": {
+            "email": "john.doe@email.com",
+            "password": "motdepasse1",
+            "first_name": "John",
+            "last_name": "Doe",
+            "phone": "1234567890",
+            "address": "123 Rue des Fleurs",
+            "postal_code": "75001",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 2,
+        "fields": {
+            "email": "jane.smith@email.com",
+            "password": "motdepasse2",
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "phone": "9876543210",
+            "address": "456 Avenue des Étoiles",
+            "postal_code": "75002",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 3,
+        "fields": {
+            "email": "alice.johnson@email.com",
+            "password": "motdepasse3",
+            "first_name": "Alice",
+            "last_name": "Johnson",
+            "phone": "5556667777",
+            "address": "789 Boulevard du Soleil",
+            "postal_code": "75003",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 4,
+        "fields": {
+            "email": "bob.williams@email.com",
+            "password": "motdepasse4",
+            "first_name": "Bob",
+            "last_name": "Williams",
+            "phone": "3332221111",
+            "address": "1010 Rue de la Lune",
+            "postal_code": "75004",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 5,
+        "fields": {
+            "email": "emma.martin@email.com",
+            "password": "motdepasse5",
+            "first_name": "Emma",
+            "last_name": "Martin",
+            "phone": "9998887777",
+            "address": "2020 Avenue des Nuages",
+            "postal_code": "75005",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 6,
+        "fields": {
+            "email": "charlie.brown@email.com",
+            "password": "motdepasse6",
+            "first_name": "Charlie",
+            "last_name": "Brown",
+            "phone": "1110009999",
+            "address": "303 Rue des Montagnes",
+            "postal_code": "75006",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 7,
+        "fields": {
+            "email": "olivia.white@email.com",
+            "password": "motdepasse7",
+            "first_name": "Olivia",
+            "last_name": "White",
+            "phone": "7776665555",
+            "address": "404 Avenue des Rivières",
+            "postal_code": "75007",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 8,
+        "fields": {
+            "email": "michael.davis@email.com",
+            "password": "motdepasse8",
+            "first_name": "Michael",
+            "last_name": "Davis",
+            "phone": "4443332222",
+            "address": "505 Boulevard des Forêts",
+            "postal_code": "75008",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 9,
+        "fields": {
+            "email": "sophia.thomas@email.com",
+            "password": "motdepasse9",
+            "first_name": "Sophia",
+            "last_name": "Thomas",
+            "phone": "2221110000",
+            "address": "606 Rue des Champs",
+            "postal_code": "75009",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.clients",
+        "pk": 10,
+        "fields": {
+            "email": "liam.jackson@email.com",
+            "password": "motdepasse10",
+            "first_name": "Liam",
+            "last_name": "Jackson",
+            "phone": "8887776666",
+            "address": "707 Avenue des Plaines",
+            "postal_code": "75010",
+            "card": "1234567891234567"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 1,
+        "fields": {
+            "delivery_id": 1,
+            "delivery_date": "2021-01-03",
+            "delivery_address": "123 Rue des Fleurs",
+            "delivery_postal_code": "75001",
+            "option": "Express"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 2,
+        "fields": {
+            "delivery_id": 2,
+            "delivery_date": "2023-01-05",
+            "delivery_address": "2020 Avenue des Nuages",
+            "delivery_postal_code": "75005",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 3,
+        "fields": {
+            "delivery_id": 3,
+            "delivery_date": "2022-04-30",
+            "delivery_address": "303 Rue des Montagnes",
+            "delivery_postal_code": "75006",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 4,
+        "fields": {
+            "delivery_id": 4,
+            "delivery_date": "2022-10-17",
+            "delivery_address": "606 Rue des Champs",
+            "delivery_postal_code": "75009",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 5,
+        "fields": {
+            "delivery_id": 5,
+            "delivery_date": "2021-12-26",
+            "delivery_address": "707 Avenue des Plaines",
+            "delivery_postal_code": "75010",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 1,
+        "fields": {
+            "order_id": 1,
+            "order_date": "2021-01-01",
+            "total_price": 15.7,
+            "status": "Delivered",
+            "email": "john.doe@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 1
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 2,
+        "fields": {
+            "order_id": 2,
+            "order_date": "2023-01-01",
+            "total_price": 14.32,
+            "status": "Delivered",
+            "email": "emma.martin@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 2
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 3,
+        "fields": {
+            "order_id": 3,
+            "order_date": "2022-04-28",
+            "total_price": 12.5,
+            "status": "Delivered",
+            "email": "charlie.brown@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 3
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 4,
+        "fields": {
+            "order_id": 4,
+            "order_date": "2022-10-13",
+            "total_price": 34.12,
+            "status": "Delivered",
+            "email": "sophia.thomas@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 4
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 5,
+        "fields": {
+            "order_id": 5,
+            "order_date": "2021-12-24",
+            "total_price": 20.0,
+            "status": "Delivered",
+            "email": "liam.jackson@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 5
+        }
+    },
+    {
+        "model": "plm.items",
+        "pk": 1,
+        "fields": {
+            "item_id": 1,
+            "name": "Cannette 1",
+            "price": 2.55
+        }
+    },
+    {
+        "model": "plm.items",
+        "pk": 2,
+        "fields": {
+            "item_id": 2,
+            "name": "Cannette 2",
+            "price": 2.55
+        }
+    },
+    {
+        "model": "plm.items",
+        "pk": 3,
+        "fields": {
+            "item_id": 3,
+            "name": "Cannette 3",
+            "price": 2.87
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 1,
+        "fields": {
+            "order_id": 1,
+            "item_id": 1,
+            "quantity": 5
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 2,
+        "fields": {
+            "order_id": 1,
+            "item_id": 2,
+            "quantity": 3
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 3,
+        "fields": {
+            "order_id": 2,
+            "item_id": 1,
+            "quantity": 4
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 4,
+        "fields": {
+            "order_id": 3,
+            "item_id": 3,
+            "quantity": 5
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 5,
+        "fields": {
+            "order_id": 4,
+            "item_id": 1,
+            "quantity": 2
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 6,
+        "fields": {
+            "order_id": 5,
+            "item_id": 3,
+            "quantity": 10
+        }
+    },
+    {
+        "model": "plm.warehouses",
+        "pk": 1,
+        "fields": {
+            "warehouse_id": 1,
+            "address": "123 Rue des Fleurs",
+            "postal_code": "75001",
+            "max_capacity": 3000
+        }
+    },
+    {
+        "model": "plm.warehouses",
+        "pk": 2,
+        "fields": {
+            "warehouse_id": 2,
+            "address": "2020 Avenue des Nuages",
+            "postal_code": "75005",
+            "max_capacity": 2500
+        }
+    },
+    {
+        "model": "plm.warehouses",
+        "pk": 3,
+        "fields": {
+            "warehouse_id": 3,
+            "address": "303 Rue des Montagnes",
+            "postal_code": "75006",
+            "max_capacity": 1000
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 1,
+        "fields": {
+            "item_id": 1,
+            "warehouse_id": 1,
+            "quantity": 200
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 2,
+        "fields": {
+            "item_id": 2,
+            "warehouse_id": 1,
+            "quantity": 500
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 3,
+        "fields": {
+            "item_id": 3,
+            "warehouse_id": 1,
+            "quantity": 100
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 4,
+        "fields": {
+            "item_id": 1,
+            "warehouse_id": 2,
+            "quantity": 300
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 5,
+        "fields": {
+            "item_id": 2,
+            "warehouse_id": 2,
+            "quantity": 400
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 6,
+        "fields": {
+            "item_id": 3,
+            "warehouse_id": 2,
+            "quantity": 150
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 7,
+        "fields": {
+            "item_id": 1,
+            "warehouse_id": 3,
+            "quantity": 100
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 8,
+        "fields": {
+            "item_id": 2,
+            "warehouse_id": 3,
+            "quantity": 200
+        }
+    },
+    {
+        "model": "plm.stocked",
+        "pk": 9,
+        "fields": {
+            "item_id": 3,
+            "warehouse_id": 3,
+            "quantity": 50
+        }
+    },
+    {
+        "model": "plm.contact",
+        "pk": 1,
+        "fields": {
+            "contact_id": 1,
+            "email": "bob.williams@email.com",
+            "name": "Bob Williams",
+            "message": "I would like to know if you have any discounts for large orders."
+        }
+    },
+    {
+        "model": "plm.admins",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "admin",
+            "role": "Admin"
+        }
+    }
+]

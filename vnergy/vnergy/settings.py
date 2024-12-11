@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'plm',
 ]
 
 MIDDLEWARE = [
@@ -76,12 +77,6 @@ WSGI_APPLICATION = 'vnergy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-'''DATABASES = {
-    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vnergy',
         'USER': 'root',
@@ -89,7 +84,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
-}'''
+}
 
 
 # Password validation

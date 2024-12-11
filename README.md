@@ -11,10 +11,8 @@ To setup the project, you need to have MySQL installed. You also need basic libr
 
 ## How to run the application
 
-To run the application, you need to run the following commands, **in the first `fruiticart` directory (the one containing `manage.py`)**:
-- `python create_database.py` (to create the database)
-- `python manage.py migrate` (to create the tables in the database)
-- `python manage.py load_data` (to load the data in the database)
+To run the application, you need to run the following commands, **in the first `vnergy` directory (the one containing `manage.py`)**:
+- `python setup.py` (to create the database, make the migrations and apply them, and load the data)
 - `python manage.py runserver` (to run the server)
 
 Here an image of the commands to run, with the expected output:

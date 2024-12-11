@@ -1,2 +1,6 @@
 # ignore /__pycache__ directories
 __pycache__/
+
+# ignore migrations files except __init__.py
+migrations/
+!migrations/__init__.py
