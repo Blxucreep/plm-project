@@ -1,9 +1,19 @@
 # PLM - project
 
-Here the reposiroty of the project of PLM course.
+Here the repository of the project of PLM course.
 
 You will find the following directories/files:
-- 
+- `captures/`: contains the captures of the application;
+- `vnergy/`: contains the Django project;
+- `data_to_fixtures/`: contains the script to convert the data to fixtures;
+- `diagram.mdj`: contains the diagram of the database;
+- `init.sql`: contains the SQL script to create the database and the tables;
+- `load_data.sql`: contains the SQL script to load the data into the database.
+
+## How the database is structured
+
+The database is structured in the following way:
+![database](captures/database.png)
 
 ## Setup
 
