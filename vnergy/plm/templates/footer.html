@@ -1,27 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <link rel="stylesheet" href="{% static 'footer.css' %}">
+</head>
 <footer>
     <div class="footer-container">
-        <p>&copy; 2025 Boisson Énergétique. Tous droits réservés.</p>
-        <div class="footer-links">
-            <a href="{% url 'contact' %}">Contact</a>
-        </div>
+        <p>&copy; 2025 Vnergy. Tous droits réservés.</p>
     </div>
 </footer>
-
-<style>
-    footer {
-        background-color: #f1f1f1;
-        padding: 20px 0;
-        border-top: 1px solid #ddd;
-        text-align: center;
-    }
-
-    .footer-links a {
-        text-decoration: none;
-        color: #333;
-        margin: 0 10px;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-    }
-</style>

@@ -1,0 +1,15 @@
+/* FOOTER */
+footer {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}

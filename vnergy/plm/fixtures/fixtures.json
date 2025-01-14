@@ -460,16 +460,6 @@
         }
     },
     {
-        "model": "plm.contact",
-        "pk": 1,
-        "fields": {
-            "contact_id": 1,
-            "email": "bob.williams@email.com",
-            "name": "Bob Williams",
-            "message": "I would like to know if you have any discounts for large orders."
-        }
-    },
-    {
         "model": "plm.admins",
         "pk": 1,
         "fields": {

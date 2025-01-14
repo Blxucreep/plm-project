@@ -1,0 +1,24 @@
+/* NAVBAR */
+header, nav {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 15px 0;
+}
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.navbar-left a, .navbar-right a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.navbar-left a:hover, .navbar-right a:hover {
+    color: #555;
+}

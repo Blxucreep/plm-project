@@ -57,12 +57,6 @@ class Stocked(models.Model):
     class Meta:
         unique_together = ('item_id', 'warehouse_id')
 
-class Contact(models.Model):
-    contact_id = models.AutoField(primary_key=True)
-    email = models.EmailField(max_length=50)
-    name = models.CharField(max_length=30)
-    message = models.CharField(max_length=500)
-
 class Admins(models.Model):
     username = models.CharField(max_length=30, primary_key=True)
     password = models.CharField(max_length=50)

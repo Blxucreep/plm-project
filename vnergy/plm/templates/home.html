@@ -4,62 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boissons Énergisantes</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
 </head>
 <body>
-    <!-- En-tête avec logo et navigation -->
-    <header>
-        <div class="container">
-            <h1 class="logo">Boisson Énergétique</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Accueil</a></li>
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    {% include 'navbar.html' %}
 
-    <!-- Section de bannière -->
     <section class="banner">
-        <h2>Découvrez nos boissons énergisantes naturelles</h2>
-        <p>Des saveurs uniques pour booster votre énergie au quotidien sans impacter votre santé!</p>
+        <h2>Bienvenue sur notre plateforme PLM</h2>
+        <p>Explorez et gérez facilement vos produits tout en suivant leur cycle de vie complet.</p>
     </section>
 
-    <!-- Grille de produits -->
     <section id="products" class="product-grid">
         <div class="product-card">
-            <img src="{% static 'images/canette1.jpg' %}" alt="Canette 1">
+            <img src="{% static 'images/canette1.jpg' %}" alt="Canette Caféine">
             <h3>Boisson Caféine</h3>
-            <p>La boisson idéale pour un boost rapide !</p>
-            <a href="produit_cafeine.html" class="product-button">Voir le produit</a>
+            <div class="product-details">
+                <p><strong>Description :</strong> La boisson idéale pour un boost rapide !</p>
+                <p><strong>Prix :</strong> 2,55 €</p>
+                <p><strong>Ingrédients :</strong> Caféine, eau minérale, sucre.</p>
+            </div>
         </div>
         <div class="product-card">
-            <img src="{% static 'images/canette2.jpg' %}" alt="Canette 2">
+            <img src="{% static 'images/canette2.jpg' %}" alt="Canette Théine">
             <h3>Boisson Théine</h3>
-            <p>Une énergie douce et prolongée.</p>
-            <a href="produit_theine.html" class="product-button">Voir le produit</a>
+            <div class="product-details">
+                <p><strong>Description :</strong> Une énergie douce et prolongée.</p>
+                <p><strong>Prix :</strong> 2,55 €</p>
+                <p><strong>Ingrédients :</strong> Théine, eau pure, miel naturel.</p>
+            </div>
         </div>
         <div class="product-card">
-            <img src="{% static 'images/canette3.jpg' %}" alt="Canette 3">
+            <img src="{% static 'images/canette3.jpg' %}" alt="Canette Vitamines">
             <h3>Boisson Vitamines</h3>
-            <p>Riche en vitamines pour un coup de fouet naturel.</p>
-            <a href="produit_vitamines.html" class="product-button">Voir le produit</a>
+            <div class="product-details">
+                <p><strong>Description :</strong> Riche en vitamines pour un coup de fouet naturel.</p>
+                <p><strong>Prix :</strong> 2,87 €</p>
+                <p><strong>Ingrédients :</strong> Vitamines C, B12, jus de fruits.</p>
+            </div>
         </div>
-        <!-- Ajoutez d'autres cartes de produits ici -->
     </section>
 
-    <!-- Section à propos -->
-    <section id="about" class="about">
-        <h2>À propos de nous</h2>
-        <p>Notre mission est de fournir des boissons énergétiques de qualité et naturelles pour les personnes en quête d'énergie et de bien-être.</p>
-    </section>
-
-    <!-- Pied de page -->
-    <footer>
-        <p>&copy; 2024 Boisson Énergétique. Tous droits réservés.</p>
-    </footer>
+    {% include 'footer.html' %}
 </body>
 </html>
