@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des commandes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style_orders.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <header class="page-header">
+        <h1>Gestion des commandes</h1>
+        <p>Suivez et gérez vos commandes de fournisseurs.</p>
+    </header>
+
+    <main class="container">
+        <section class="order-management">
+            <h2>Commandes des fournisseurs</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Fournisseur</th>
+                        <th>Nombre d'articles</th>
+                        <th>Date de prochaine commande</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for supplier in suppliers %}
+                    <tr>
+                        <td>{{ supplier.name }}</td>
+                        <td>
+                            <span id="quantity-{{ supplier.id }}">{{ supplier.quantity_purchased }}</span>
+                            <button onclick="updateQuantity({{ supplier.id }}, 'increase')">⬆</button>
+                            <button onclick="updateQuantity({{ supplier.id }}, 'decrease')">⬇</button>
+                        </td>
+                        <td>
+                            <input type="date" id="order-date-{{ supplier.id }}" value="{{ supplier.next_order_date|date:'Y-m-d' }}">
+                        </td>
+                        <td>
+                            <button onclick="saveOrderDate({{ supplier.id }})" class="btn-primary">Enregistrer</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="{% static 'order_management.js' %}"></script>
+</body>
+</html>

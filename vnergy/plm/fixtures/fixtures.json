@@ -467,5 +467,116 @@
             "password": "admin",
             "role": "Admin"
         }
+    },
+    {
+        "model": "plm.supplier",
+        "pk": 1,
+        "fields": {
+            "name": "Caféine Naturelle SA",
+            "email": "contact@cafeinenaturelle.com",
+            "phone": "+33 1 23 45 67 89",
+            "address": "12 rue des Énergies, 75000 Paris, France",
+            "products_sold": "Caféine naturelle",
+            "quantity_purchased": 120,
+            "performance_score": 92,
+            "next_order_date": "2025-02-15"
+        }
+    },
+    {
+        "model": "plm.supplier",
+        "pk": 2,
+        "fields": {
+            "name": "Théine Bio Ltd",
+            "email": "support@theinebio.com",
+            "phone": "+44 20 7946 0958",
+            "address": "45 Tea Lane, London, UK",
+            "products_sold": "Théine biologique",
+            "quantity_purchased": 85,
+            "performance_score": 87,
+            "next_order_date": "2025-02-20"
+        }
+    },
+    {
+        "model": "plm.supplier",
+        "pk": 3,
+        "fields": {
+            "name": "Fruits Exotiques SARL",
+            "email": "info@fruitsexotiques.com",
+            "phone": "+33 2 98 76 54 32",
+            "address": "23 Avenue des Tropiques, 29200 Brest, France",
+            "products_sold": "Jus de fruits concentrés",
+            "quantity_purchased": 150,
+            "performance_score": 89,
+            "next_order_date": "2025-02-18"
+        }
+    },
+    {
+        "model": "plm.supplier",
+        "pk": 4,
+        "fields": {
+            "name": "Miel Doré Co.",
+            "email": "sales@mieldore.com",
+            "phone": "+49 30 123 456",
+            "address": "12 Honigweg, 10115 Berlin, Germany",
+            "products_sold": "Miel biologique",
+            "quantity_purchased": 100,
+            "performance_score": 94,
+            "next_order_date": "2025-03-01"
+        }
+    },
+    {
+        "model": "plm.supplier",
+        "pk": 5,
+        "fields": {
+            "name": "Canettes Vides Industries",
+            "email": "contact@cvi.com",
+            "phone": "+1 212 555 7890",
+            "address": "456 Steel Lane, New York, USA",
+            "products_sold": "Cannettes vides en aluminium",
+            "quantity_purchased": 300,
+            "performance_score": 85,
+            "next_order_date": "2025-02-28"
+        }
+    },
+    {
+        "model": "plm.supplier",
+        "pk": 6,
+        "fields": {
+            "name": "Étiquettes Design SA",
+            "email": "design@etiquettes.com",
+            "phone": "+33 4 56 78 90 12",
+            "address": "8 rue des Graphismes, 69000 Lyon, France",
+            "products_sold": "Étiquettes pour cannettes",
+            "quantity_purchased": 250,
+            "performance_score": 90,
+            "next_order_date": "2025-02-25"
+        }
+    },
+    {
+        "model": "plm.customerfeedback",
+        "pk": 1,
+        "fields": {
+            "customer_name": "Alice Dupont",
+            "customer_email": "alice.dupont@example.com",
+            "message": "J'adore vos produits, mais le service client est un peu lent.",
+            "feedback_type": "review",
+            "response": null,
+            "created_at": "2025-01-01T10:30:00Z",
+            "responded_at": null
+        }
+    },
+    {
+        "model": "plm.customerfeedback",
+        "pk": 2,
+        "fields": {
+            "customer_name": "John Doe",
+            "customer_email": "john.doe@example.com",
+            "message": "Ma dernière commande est arrivée endommagée.",
+            "feedback_type": "complaint",
+            "response": null,
+            "created_at": "2025-01-05T14:15:00Z",
+            "responded_at": null
+        }
     }
+
 ]

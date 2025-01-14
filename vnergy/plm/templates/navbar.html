@@ -5,24 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navbar</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'navbar.css' %}">
 </head>
-<nav>
-    <div class="navbar-container">
-        <div class="navbar-left">
-            <a href="{% url 'home' %}">Home</a>
-            {% if username %}
-            <a href="{% url 'dashboard' %}">Dashboard</a>
-            {% endif %}
+<body>
+    <nav>
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <a href="{% url 'home' %}" class="navbar-link">Home</a>
+                {% if username %}
+                    <a href="{% url 'dashboard' %}" class="navbar-link">Dashboard</a>
+                    <a href="{% url 'supplier_list' %}" class="navbar-link">Fournisseurs</a>
+                    <a href="{% url 'order_management' %}" class="navbar-link">Gestion des commandes</a>
+                    <a href="{% url 'feedback_management' %}" class="navbar-link">Avis clients</a>
+                {% endif %}
+            </div>
+            <div class="navbar-right">
+                {% if username %}
+                    <a href="{% url 'logout' %}" class="navbar-link">Log out</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="navbar-link">Login</a>
+                    <a href="{% url 'signup' %}" class="navbar-link">Sign up</a>
+                {% endif %}
+            </div>
         </div>
-        
-        <div class="navbar-right">
-            {% if username %}
-                <a href="{% url 'logout' %}">Log out</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'signup' %}">Sign up</a>
-            {% endif %}
-        </div>
-    </div>
-</nav>
+    </nav>
+    
+    
+</body>

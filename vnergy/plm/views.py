@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
-
-from .models import Orders, Admins
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Orders, Admins, Supplier
+from .forms import SupplierForm
+from django.http import JsonResponse
+from .models import CustomerFeedback
+from datetime import datetime
 
 def logout(request):
     # set the cookie to expire
@@ -82,3 +85,74 @@ def dashboard(request):
         'months': months
     }
     return render(request, 'dashboard.html', context)
+
+
+
+def supplier_list(request):
+    if request.method == 'POST':
+        supplier_id = request.POST.get('supplier_id')
+        if supplier_id:  # Modification d'un fournisseur existant
+            supplier = get_object_or_404(Supplier, pk=supplier_id)
+            form = SupplierForm(request.POST, instance=supplier)
+        else:  # Ajout d'un nouveau fournisseur
+            form = SupplierForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('supplier_list')
+
+    suppliers = Supplier.objects.all()
+    return render(request, 'supplier_list.html', {'suppliers': suppliers})
+
+def supplier_delete(request, pk):
+    supplier = get_object_or_404(Supplier, pk=pk)
+    supplier.delete()
+    return redirect('supplier_list')
+
+import json
+
+def supplier_view(request):
+    suppliers = list(Supplier.objects.values('name', 'performance_score'))
+    suppliers_json = json.dumps(suppliers)  # Sérialisation en JSON
+    return render(request, 'template.html', {'suppliers_json': suppliers_json})
+
+
+def order_management_view(request):
+    suppliers = Supplier.objects.all()
+    return render(request, 'order_management.html', {'suppliers': suppliers})
+
+def update_quantity(request, supplier_id):
+    if request.method == 'POST':
+        supplier = get_object_or_404(Supplier, pk=supplier_id)
+        data = request.POST
+        action = data.get('action')
+        if action == 'increase':
+            supplier.quantity_purchased += 1
+        elif action == 'decrease' and supplier.quantity_purchased > 0:
+            supplier.quantity_purchased -= 1
+        supplier.save()
+        return JsonResponse({'quantity': supplier.quantity_purchased})
+
+def update_order_date(request, supplier_id):
+    if request.method == 'POST':
+        supplier = get_object_or_404(Supplier, pk=supplier_id)
+        data = request.POST
+        next_order_date = data.get('next_order_date')
+        if next_order_date:
+            supplier.next_order_date = next_order_date
+            supplier.save()
+        return JsonResponse({'next_order_date': supplier.next_order_date})
+    
+
+def feedback_management_view(request):
+    feedbacks = CustomerFeedback.objects.all()
+    return render(request, 'feedback_management.html', {'feedbacks': feedbacks})
+
+def respond_to_feedback(request, feedback_id):
+    if request.method == 'POST':
+        feedback = get_object_or_404(CustomerFeedback, pk=feedback_id)
+        response = request.POST.get('response')
+        feedback.response = response
+        feedback.responded_at = datetime.now()
+        feedback.save()
+        return JsonResponse({'response': feedback.response, 'responded_at': feedback.responded_at})

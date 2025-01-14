@@ -61,3 +61,32 @@ class Admins(models.Model):
     username = models.CharField(max_length=30, primary_key=True)
     password = models.CharField(max_length=50)
     role = models.CharField(max_length=12, choices=[('Admin', 'Admin'), ('Data Analyst', 'Data Analyst'), ('Manager', 'Manager'), ('Employee', 'Employee')])
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    address = models.TextField()
+    products_sold = models.TextField()
+    quantity_purchased = models.IntegerField(default=0)  # Quantité achetée
+    performance_score = models.IntegerField(default=0)   # Score de performance
+    next_order_date = models.DateField(null=True, blank=True)  # Date de prochaine commande
+
+    def __str__(self):
+        return self.name
+
+
+class CustomerFeedback(models.Model):
+    customer_name = models.CharField(max_length=255)
+    customer_email = models.EmailField()
+    message = models.TextField()
+    feedback_type = models.CharField(
+        max_length=50, 
+        choices=[('review', 'Review'), ('complaint', 'Complaint')]
+    )
+    response = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    responded_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.customer_name} - {self.feedback_type}"

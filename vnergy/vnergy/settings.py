@@ -56,7 +56,7 @@ ROOT_URLCONF = 'vnergy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'plm', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'vnergy/plm/templates')],  # Ajoutez le chemin ici
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'vnergy.wsgi.application'
 

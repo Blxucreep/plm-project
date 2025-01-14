@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des avis clients</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style_feedback.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <header class="page-header">
+        <h1>Gestion des avis clients</h1>
+        <p>Répondez aux avis et réclamations de vos clients.</p>
+    </header>
+
+    <main class="container">
+        <section class="feedback-management">
+            <h2>Liste des avis et réclamations</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Message</th>
+                        <th>Réponse</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feedback in feedbacks %}
+                    <tr>
+                        <td>{{ feedback.customer_name }}</td>
+                        <td>{{ feedback.customer_email }}</td>
+                        <td>{{ feedback.feedback_type }}</td>
+                        <td>{{ feedback.message }}</td>
+                        <td>
+                            {% if feedback.response %}
+                                <p>{{ feedback.response }}</p>
+                                <small>Répondu le : {{ feedback.responded_at|date:'d/m/Y H:i' }}</small>
+                            {% else %}
+                                <textarea id="response-{{ feedback.id }}" placeholder="Écrire une réponse..."></textarea>
+                            {% endif %}
+                        </td>
+                        <td>{{ feedback.created_at|date:'d/m/Y H:i' }}</td>
+                        <td>
+                            {% if not feedback.response %}
+                                <button onclick="sendResponse({{ feedback.id }})" class="btn-primary">Répondre</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="{% static 'feedback_management.js' %}"></script>
+</body>
+</html>
