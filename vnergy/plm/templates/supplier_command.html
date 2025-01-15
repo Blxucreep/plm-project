@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des commandes</title>
+    <title>Commands</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="{% static 'supplier_command.css' %}">
 </head>
@@ -12,36 +12,38 @@
     {% include 'navbar.html' %}
 
     <section class="banner">
-        <h2>Gestion des commandes</h2>
-        <p>Suivez et gérez vos commandes de fournisseurs.</p>
+        <h2>Commands</h2>
+        <p>Follow and manage your supplier orders.</p>
     </section>
 
     <main class="container">
         <section class="order-management">
-            <h2>Commandes des fournisseurs</h2>
+            <h2>Supply your products</h2>
             <table class="styled-table">
                 <thead>
                     <tr>
-                        <th>Fournisseur</th>
-                        <th>Nombre d'articles</th>
-                        <th>Date de prochaine commande</th>
-                        <th>Actions</th>
+                        <th>Product</th>
+                        <th>For item ID</th>
+                        <th>Item</th>
+                        <th>From Supplier ID</th>
+                        <th>Supplier</th>
+                        <th>Quantity in stock</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for supplier in suppliers %}
+                    {% for entry in supplies_with_names %}
                     <tr>
-                        <td>{{ supplier.name }}</td>
+                        <td>{{ entry.product_name }}</td>
+                        <td>{{ entry.item_id }}</td>
+                        <td>{{ entry.item_name }}</td>
+                        <td>{{ entry.supplier_id }}</td>
+                        <td>{{ entry.supplier_name }}</td>
+                        <td>{{ entry.quantity|default:"0" }}</td>
                         <td>
-                            <span>{{ supplier.quantity_purchased }}</span>
-                        </td>
-                        <td>
-                            <input type="date" name="order_date_{{ supplier.id }}" value="{{ supplier.next_order_date|date:'Y-m-d' }}">
-                        </td>
-                        <td>
-                            <form method="post" action="{% url 'supplier_order' supplier.id %}">
+                            <form method="post" action="{% url 'supplier_order' entry.supplier_id entry.item_id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn-primary">Enregistrer</button>
+                                <button type="submit" class="btn-primary">Order 10</button>
                             </form>
                         </td>
                     </tr>

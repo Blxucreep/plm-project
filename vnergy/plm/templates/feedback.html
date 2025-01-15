@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des avis clients</title>
+    <title>Feedbacks</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="{% static 'feedback.css' %}">
 </head>
@@ -12,53 +12,46 @@
     {% include 'navbar.html' %}
 
     <section class="banner">
-        <h2>Gestion des avis clients</h2>
-        <p>Répondez aux avis et réclamations de vos clients.</p>
+        <h2>Feedbacks from clients</h2>
+        <p>Answer to reviews and complaints from your customers.</p>
     </section>
 
     <main class="container">
         <section class="feedback-management">
-            <h2>Liste des avis et réclamations</h2>
+            <h2>List of reviews and complaints</h2>
             <table class="styled-table">
                 <thead>
                     <tr>
-                        <th>Nom</th>
+                        <th>Feedback ID</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Type</th>
                         <th>Message</th>
-                        <th>Réponse</th>
-                        <th>Date</th>
-                        <th>Actions</th>
+                        <th>Answer</th>
+                        <th>Date of answer</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for feedback in feedbacks %}
                     <tr>
+                        <td>{{ feedback.feedback_id }}</td>
                         <td>{{ feedback.customer_name }}</td>
                         <td>{{ feedback.customer_email }}</td>
                         <td>{{ feedback.feedback_type }}</td>
                         <td>{{ feedback.message }}</td>
+                        {% if feedback.answer %}
+                        <td><p>{{ feedback.answer }}</p></td>
+                        <td>{{ feedback.answer_date }}</td>
+                        {% else %}
                         <td>
-                            {% if feedback.response %}
-                                <p>{{ feedback.response }}</p>
-                                <small>Répondu le : {{ feedback.responded_at|date:'d/m/Y H:i' }}</small>
-                            {% else %}
-                                <form method="post" action="{% url 'feedback_response' feedback.id %}">
-                                    {% csrf_token %}
-                                    <textarea name="response" placeholder="Écrire une réponse..." required></textarea>
-                                    <button type="submit" class="btn-primary">Répondre</button>
-                                </form>
-                            {% endif %}
+                            <form method="post" action="{% url 'feedback_answer' feedback.feedback_id %}">
+                                {% csrf_token %}
+                                <textarea name="answer" placeholder="Write an answer..." required></textarea>
+                                <button type="submit" class="btn-primary">Answer</button>
+                            </form>
                         </td>
-                        <td>{{ feedback.created_at|date:'d/m/Y H:i' }}</td>
-                        <td>
-                            {% if not feedback.response %}
-                                <form method="post" action="{% url 'feedback_response' feedback.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn-primary">Répondre</button>
-                                </form>
-                            {% endif %}
-                        </td>
+                        <td>Not yet answered.</td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

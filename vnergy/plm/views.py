@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Admins, Supplier, Orders
 from django.http import JsonResponse
-from .models import CustomerFeedback
+from .models import Orders, Admins, Suppliers, IsSupplied, CustomerFeedbacks
 from datetime import datetime
 import json
 
@@ -115,22 +114,24 @@ def dashboard(request):
 
 def supplier(request):
     username = request.COOKIES.get('username', None)
-    suppliers = Supplier.objects.all()
+    suppliers = Suppliers.objects.all()
     
     return render(request, 'supplier.html', {'username': username, 'suppliers': suppliers})
 
 def supplier_add(request):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    phone = request.POST.get('phone')
+    address = request.POST.get('address')
+    product_sold = request.POST.get('product_sold')
 
+    supplier = Suppliers(name=name, email=email, phone=phone, address=address, product_sold=product_sold)
+    supplier.save()
 
     return redirect('supplier')
 
-def supplier_edit(request, id):
-
-
-    return redirect('supplier')
-
-def supplier_delete(id):
-    supplier = get_object_or_404(Supplier, pk=id)
+def supplier_delete(request, supplier_id):
+    supplier = get_object_or_404(Suppliers, supplier_id=supplier_id)
     supplier.delete()
 
     return redirect('supplier')
@@ -138,29 +139,50 @@ def supplier_delete(id):
 
 def supplier_command(request):
     username = request.COOKIES.get('username', None)
-    suppliers = Supplier.objects.all()
 
-    return render(request, 'supplier_command.html', {'username': username, 'suppliers': suppliers})
+    # get all the relations between suppliers and items
+    supplies = IsSupplied.objects.select_related('supplier_id', 'item_id')
 
-def supplier_order(supplier_id):
-    supplier = get_object_or_404(Supplier, pk=supplier_id)
-    supplier.quantity_purchased += 1
-    supplier.save()
+    supplies_with_names = []
+    for supply in supplies:
+        supplier = supply.supplier_id
+        item = supply.item_id
 
-    return JsonResponse({'quantity_purchased': supplier.quantity_purchased})
-    
+        supply = IsSupplied.objects.filter(supplier_id=supplier, item_id=item)
+
+        # add the total stock of the item
+        supplies_with_names.append({
+            'product_name': supplier.product_sold,
+            'item_id': item.item_id,
+            'item_name': item.name,
+            'supplier_id': supplier.supplier_id,
+            'supplier_name': supplier.name,
+            'quantity': supply[0].quantity or 0
+        })
+
+    return render(request, 'supplier_command.html', {'username': username, 'supplies_with_names': supplies_with_names})
+
+def supplier_order(request, supplier_id, item_id):
+    # get the item supplied by the supplier
+    supplied_item = IsSupplied.objects.get(supplier_id=supplier_id, item_id=item_id)
+
+    supplied_item.quantity += 10
+    supplied_item.save()
+
+    return redirect('supplier_command')
+
 
 def feedback(request):
     username = request.COOKIES.get('username', None)
-    feedbacks = CustomerFeedback.objects.all()
+    feedbacks = CustomerFeedbacks.objects.all()
 
     return render(request, 'feedback.html', {'username': username, 'feedbacks': feedbacks})
 
-def feedback_response(request, feedback_id):
-    if request.method == 'POST':
-        feedback = get_object_or_404(CustomerFeedback, pk=feedback_id)
-        response = request.POST.get('response')
-        feedback.response = response
-        feedback.responded_at = datetime.now()
-        feedback.save()
-        return JsonResponse({'response': feedback.response, 'responded_at': feedback.responded_at})
+def feedback_answer(request, feedback_id):
+    feedback = CustomerFeedbacks.objects.get(feedback_id=feedback_id)
+
+    feedback.answer = request.POST.get('answer')
+    feedback.answer_date = datetime.now()
+    feedback.save()
+
+    return redirect('feedback')

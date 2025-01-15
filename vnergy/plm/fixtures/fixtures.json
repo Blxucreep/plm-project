@@ -469,114 +469,235 @@
         }
     },
     {
-        "model": "plm.supplier",
+        "model": "plm.suppliers",
         "pk": 1,
         "fields": {
+            "supplier_id": 1,
             "name": "Caféine Naturelle SA",
             "email": "contact@cafeinenaturelle.com",
-            "phone": "+33 1 23 45 67 89",
+            "phone": "0123456789",
             "address": "12 rue des Énergies, 75000 Paris, France",
-            "products_sold": "Caféine naturelle",
-            "quantity_purchased": 120,
-            "performance_score": 92,
-            "next_order_date": "2025-02-15"
+            "product_sold": "Caféine naturelle"
         }
     },
     {
-        "model": "plm.supplier",
+        "model": "plm.suppliers",
         "pk": 2,
         "fields": {
+            "supplier_id": 2,
             "name": "Théine Bio Ltd",
             "email": "support@theinebio.com",
-            "phone": "+44 20 7946 0958",
+            "phone": "0179460958",
             "address": "45 Tea Lane, London, UK",
-            "products_sold": "Théine biologique",
-            "quantity_purchased": 85,
-            "performance_score": 87,
-            "next_order_date": "2025-02-20"
+            "product_sold": "Théine biologique"
         }
     },
     {
-        "model": "plm.supplier",
+        "model": "plm.suppliers",
         "pk": 3,
         "fields": {
+            "supplier_id": 3,
             "name": "Fruits Exotiques SARL",
             "email": "info@fruitsexotiques.com",
-            "phone": "+33 2 98 76 54 32",
+            "phone": "0298765432",
             "address": "23 Avenue des Tropiques, 29200 Brest, France",
-            "products_sold": "Jus de fruits concentrés",
-            "quantity_purchased": 150,
-            "performance_score": 89,
-            "next_order_date": "2025-02-18"
+            "product_sold": "Jus de fruits concentrés"
         }
     },
     {
-        "model": "plm.supplier",
+        "model": "plm.suppliers",
         "pk": 4,
         "fields": {
+            "supplier_id": 4,
             "name": "Miel Doré Co.",
             "email": "sales@mieldore.com",
-            "phone": "+49 30 123 456",
+            "phone": "0930123456",
             "address": "12 Honigweg, 10115 Berlin, Germany",
-            "products_sold": "Miel biologique",
-            "quantity_purchased": 100,
-            "performance_score": 94,
-            "next_order_date": "2025-03-01"
+            "product_sold": "Miel biologique"
         }
     },
     {
-        "model": "plm.supplier",
+        "model": "plm.suppliers",
         "pk": 5,
         "fields": {
+            "supplier_id": 5,
             "name": "Canettes Vides Industries",
             "email": "contact@cvi.com",
-            "phone": "+1 212 555 7890",
+            "phone": "0125557890",
             "address": "456 Steel Lane, New York, USA",
-            "products_sold": "Cannettes vides en aluminium",
-            "quantity_purchased": 300,
-            "performance_score": 85,
-            "next_order_date": "2025-02-28"
+            "product_sold": "Cannettes vides en aluminium"
         }
     },
     {
-        "model": "plm.supplier",
+        "model": "plm.suppliers",
         "pk": 6,
         "fields": {
+            "supplier_id": 6,
             "name": "Étiquettes Design SA",
             "email": "design@etiquettes.com",
-            "phone": "+33 4 56 78 90 12",
+            "phone": "0456789012",
             "address": "8 rue des Graphismes, 69000 Lyon, France",
-            "products_sold": "Étiquettes pour cannettes",
-            "quantity_purchased": 250,
-            "performance_score": 90,
-            "next_order_date": "2025-02-25"
+            "product_sold": "Étiquettes pour cannettes"
         }
     },
     {
-        "model": "plm.customerfeedback",
+        "model": "plm.suppliers",
+        "pk": 7,
+        "fields": {
+            "supplier_id": 7,
+            "name": "Sucre Bio Ltd",
+            "email": "contact@sucrobon.com",
+            "phone": "0120123456",
+            "address": "20 rue des Sucres, 75000 Paris, France",
+            "product_sold": "Sucre"
+        }
+    },
+    {
+        "model": "plm.suppliers",
+        "pk": 8,
+        "fields": {
+            "supplier_id": 8,
+            "name": "Vitaminwater Inc.",
+            "email": "contact.vitamines@vitaminwater.com",
+            "phone": "0987654321",
+            "address": "123 Vitamin Street, 10001 New York, USA",
+            "product_sold": "Vitamines"
+        }
+    },
+    {
+        "model": "plm.issupplied",
         "pk": 1,
         "fields": {
-            "customer_name": "Alice Dupont",
-            "customer_email": "alice.dupont@example.com",
-            "message": "J'adore vos produits, mais le service client est un peu lent.",
-            "feedback_type": "review",
-            "response": null,
-            "created_at": "2025-01-01T10:30:00Z",
-            "responded_at": null
+            "item_id": 1,
+            "supplier_id": 1,
+            "quantity": 100
         }
     },
     {
-        "model": "plm.customerfeedback",
+        "model": "plm.issupplied",
         "pk": 2,
         "fields": {
+            "item_id": 1,
+            "supplier_id": 7,
+            "quantity": 200
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 3,
+        "fields": {
+            "item_id": 1,
+            "supplier_id": 5,
+            "quantity": 150
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 4,
+        "fields": {
+            "item_id": 1,
+            "supplier_id": 6,
+            "quantity": 300
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 5,
+        "fields": {
+            "item_id": 2,
+            "supplier_id": 2,
+            "quantity": 100
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 6,
+        "fields": {
+            "item_id": 2,
+            "supplier_id": 4,
+            "quantity": 200
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 7,
+        "fields": {
+            "item_id": 2,
+            "supplier_id": 5,
+            "quantity": 150
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 8,
+        "fields": {
+            "item_id": 2,
+            "supplier_id": 6,
+            "quantity": 300
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 9,
+        "fields": {
+            "item_id": 3,
+            "supplier_id": 8,
+            "quantity": 100
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 10,
+        "fields": {
+            "item_id": 3,
+            "supplier_id": 3,
+            "quantity": 200
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 11,
+        "fields": {
+            "item_id": 3,
+            "supplier_id": 5,
+            "quantity": 150
+        }
+    },
+    {
+        "model": "plm.issupplied",
+        "pk": 12,
+        "fields": {
+            "item_id": 3,
+            "supplier_id": 6,
+            "quantity": 300
+        }
+    },
+    {
+        "model": "plm.customerfeedbacks",
+        "pk": 1,
+        "fields": {
+            "feedback_id": 1,
+            "customer_name": "Alice Dupont",
+            "customer_email": "alice.dupont@example.com",
+            "feedback_type": "review",
+            "message": "J'adore vos produits, mais le service client est un peu lent.",
+            "message_date": "2025-01-01T10:30:00Z",
+            "answer": null,
+            "answer_date": null
+        }
+    },
+    {
+        "model": "plm.customerfeedbacks",
+        "pk": 2,
+        "fields": {
+            "feedback_id": 2,
             "customer_name": "John Doe",
             "customer_email": "john.doe@example.com",
-            "message": "Ma dernière commande est arrivée endommagée.",
             "feedback_type": "complaint",
-            "response": null,
-            "created_at": "2025-01-05T14:15:00Z",
-            "responded_at": null
+            "message": "Ma dernière commande est arrivée endommagée.",
+            "message_date": "2025-01-05T14:15:00Z",
+            "answer": null,
+            "answer_date": null
         }
     }
-
 ]

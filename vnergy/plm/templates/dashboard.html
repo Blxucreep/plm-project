@@ -7,7 +7,6 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
     <link rel="stylesheet" href="{% static 'dashboard.css' %}">
-    <!-- Ajouter Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -15,7 +14,7 @@
 
     <section class="banner">
         <h2>Dashboard</h2>
-        <p>Visualisez et analysez les performances de vos produits.</p>
+        <p>Visualize and analyze your performances.</p>
     </section>
 
     <section class="dashboard-container">
@@ -33,12 +32,12 @@
                 <option value="number" {% if y_axis == "number" %}selected{% endif %}>Number</option>
             </select>
 
-            <button id="create-chart" class="btn-primary">Create the chart</button> <!-- Ajouter l'ID au bouton -->
+            <button id="create-chart" class="btn-primary">Create the chart</button>
         </div>
 
         <div class="chart-container">
             <h3>Chart of your data</h3>
-            <canvas id="chart"></canvas> <!-- Espace pour afficher le graphique -->
+            <canvas id="chart"></canvas>
         </div>
 
         {% if error %}
