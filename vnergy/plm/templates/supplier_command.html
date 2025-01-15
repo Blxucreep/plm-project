@@ -1,19 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des commandes</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style_orders.css' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'supplier_command.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
 
-    <header class="page-header">
-        <h1>Gestion des commandes</h1>
+    <section class="banner">
+        <h2>Gestion des commandes</h2>
         <p>Suivez et gérez vos commandes de fournisseurs.</p>
-    </header>
+    </section>
 
     <main class="container">
         <section class="order-management">
@@ -32,15 +33,16 @@
                     <tr>
                         <td>{{ supplier.name }}</td>
                         <td>
-                            <span id="quantity-{{ supplier.id }}">{{ supplier.quantity_purchased }}</span>
-                            <button onclick="updateQuantity({{ supplier.id }}, 'increase')">⬆</button>
-                            <button onclick="updateQuantity({{ supplier.id }}, 'decrease')">⬇</button>
+                            <span>{{ supplier.quantity_purchased }}</span>
                         </td>
                         <td>
-                            <input type="date" id="order-date-{{ supplier.id }}" value="{{ supplier.next_order_date|date:'Y-m-d' }}">
+                            <input type="date" name="order_date_{{ supplier.id }}" value="{{ supplier.next_order_date|date:'Y-m-d' }}">
                         </td>
                         <td>
-                            <button onclick="saveOrderDate({{ supplier.id }})" class="btn-primary">Enregistrer</button>
+                            <form method="post" action="{% url 'supplier_order' supplier.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-primary">Enregistrer</button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}
@@ -50,6 +52,5 @@
     </main>
 
     {% include 'footer.html' %}
-    <script src="{% static 'order_management.js' %}"></script>
 </body>
 </html>

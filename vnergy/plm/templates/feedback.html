@@ -1,19 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des avis clients</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style_feedback.css' %}">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'feedback.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
 
-    <header class="page-header">
-        <h1>Gestion des avis clients</h1>
+    <section class="banner">
+        <h2>Gestion des avis clients</h2>
         <p>Répondez aux avis et réclamations de vos clients.</p>
-    </header>
+    </section>
 
     <main class="container">
         <section class="feedback-management">
@@ -42,13 +43,20 @@
                                 <p>{{ feedback.response }}</p>
                                 <small>Répondu le : {{ feedback.responded_at|date:'d/m/Y H:i' }}</small>
                             {% else %}
-                                <textarea id="response-{{ feedback.id }}" placeholder="Écrire une réponse..."></textarea>
+                                <form method="post" action="{% url 'feedback_response' feedback.id %}">
+                                    {% csrf_token %}
+                                    <textarea name="response" placeholder="Écrire une réponse..." required></textarea>
+                                    <button type="submit" class="btn-primary">Répondre</button>
+                                </form>
                             {% endif %}
                         </td>
                         <td>{{ feedback.created_at|date:'d/m/Y H:i' }}</td>
                         <td>
                             {% if not feedback.response %}
-                                <button onclick="sendResponse({{ feedback.id }})" class="btn-primary">Répondre</button>
+                                <form method="post" action="{% url 'feedback_response' feedback.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-primary">Répondre</button>
+                                </form>
                             {% endif %}
                         </td>
                     </tr>
@@ -59,6 +67,5 @@
     </main>
 
     {% include 'footer.html' %}
-    <script src="{% static 'feedback_management.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+/* SUPPLIER COMMAND */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.order-management {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1rem;
+    text-align: left;
+    border: 1px solid var(--background-color);
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid var(--background-color);
+}
+.styled-table th {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.styled-table tr:hover {
+    background-color: var(--hover-color);
+    color: white;
+}
+.order-management input[type="date"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid var(--background-color);
+    border-radius: 5px;
+}
+form {
+    display: inline;
+}
+form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+form button:hover {
+    background-color: var(--hover-color);
+}

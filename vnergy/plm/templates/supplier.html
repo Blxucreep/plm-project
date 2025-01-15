@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'supplier.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <section class="banner">
+        <h2>Supplier portal</h2>
+        <p>Ajoutez, modifiez et consultez vos fournisseurs facilement.</p>
+    </section>
+
+    <main class="container">
+        <section class="table-section">
+            <h2>Liste des fournisseurs</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Adresse</th>
+                        <th>Produits vendus</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for supplier in suppliers %}
+                    <tr>
+                        <td>{{ supplier.name }}</td>
+                        <td>{{ supplier.email }}</td>
+                        <td>{{ supplier.phone }}</td>
+                        <td>{{ supplier.address }}</td>
+                        <td>{{ supplier.products_sold }}</td>
+                        <td>
+                            <a href="{% url 'supplier_edit' supplier.id %}" class="btn-secondary">Modifier</a>
+                            <form method="post" action="{% url 'supplier_delete' supplier.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Formulaire de gestion des fournisseurs -->
+        <section class="form-section">
+            <h2>Ajouter / Modifier un fournisseur</h2>
+            <form method="post" action="{% url 'supplier_add' %}">
+                {% csrf_token %}
+                <input type="hidden" name="supplier_id" id="supplierId" value="{{ supplier.id|default:'' }}">
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" name="name" id="name" value="{{ supplier.name|default:'' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" name="email" id="email" value="{{ supplier.email|default:'' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone :</label>
+                    <input type="text" name="phone" id="phone" value="{{ supplier.phone|default:'' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Adresse :</label>
+                    <textarea name="address" id="address" rows="2" required>{{ supplier.address|default:'' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="products_sold">Produits vendus :</label>
+                    <textarea name="products_sold" id="productsSold" rows="2" required>{{ supplier.products_sold|default:'' }}</textarea>
+                </div>
+                <button type="submit" class="btn-primary">Enregistrer</button>
+            </form>
+        </section>
+    </main>
+
+    {% include 'footer.html' %}
+</body>
+</html>

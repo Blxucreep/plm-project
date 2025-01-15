@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Orders, Admins, Supplier
-from .forms import SupplierForm
+from .models import Admins, Supplier, Orders
 from django.http import JsonResponse
 from .models import CustomerFeedback
 from datetime import datetime
+import json
 
 def logout(request):
     # set the cookie to expire
@@ -55,100 +55,108 @@ def signup(request):
 
     return render(request, 'signup.html')
 
+
 def home(request):
     username = request.COOKIES.get('username', None)
 
     return render(request, 'home.html', {'username': username})
 
+
 def dashboard(request):
     username = request.COOKIES.get('username', None)
 
-    # Récupérer les données des commandes
-    orders = Orders.objects.all()
+    x = request.GET.get('x-axis')
+    y = request.GET.get('y-axis')
+    data_converted = []
 
-    # Calculer les ventes mensuelles
-    monthly_sales = {}
-    for order in orders:
-        # Extraire le mois de la date de commande
-        month = order.order_date.strftime('%B')  # Obtenez le mois au format texte (ex. : "January")
-        if month not in monthly_sales:
-            monthly_sales[month] = 0
-        monthly_sales[month] += float(order.total_price)
+    if not x and not y:
+        return render(request, 'dashboard.html', {'username': username})
+    elif x == 'time' and y == 'sales':
+        orders = Orders.objects.all()
 
-    # Ordonner les mois pour un affichage correct
-    months = ["January", "February", "March", "April", "May", "June"]
-    sales = [monthly_sales.get(month, 0) for month in months]
+        # create a dictionnary for each month
+        data = {}
+        for order in orders:
+            month = order.order_date.strftime('%Y-%m')
+            if month in data:
+                data[month].append(order.total_price)
+            else:
+                data[month] = [order.total_price]
 
-    context = {
-        'username': username,
-        'sales': sales,
-        'months': months
-    }
-    return render(request, 'dashboard.html', context)
+        # do the mean for each month
+        data_converted = [{'time': month, 'sales': float(sum(data[month])/len(data[month]))} for month in data]
+    elif x == 'time' and y == 'commands':
+        orders = Orders.objects.all()
+
+        #create a dictionnary for each month
+        data = {}
+        for order in orders:
+            month = order.order_date.strftime('%Y-%m')
+            if month in data:
+                data[month] += 1
+            else:
+                data[month] = 1
+
+        data_converted = [{'time': month, 'commands': number} for month, number in data.items()]
+    elif x == 'status' and y == 'number':
+        orders = Orders.objects.all()
+        data = {}
+        for order in orders:
+            status = order.status
+            if status in data:
+                data[status] += 1
+            else:
+                data[status] = 1
+
+        data_converted = [{'status': status, 'number': number} for status, number in data.items()]
+        
+    return render(request, 'dashboard.html', {'username': username, 'data': json.dumps(data_converted), 'x_axis': x, 'y_axis': y})
 
 
-
-def supplier_list(request):
-    if request.method == 'POST':
-        supplier_id = request.POST.get('supplier_id')
-        if supplier_id:  # Modification d'un fournisseur existant
-            supplier = get_object_or_404(Supplier, pk=supplier_id)
-            form = SupplierForm(request.POST, instance=supplier)
-        else:  # Ajout d'un nouveau fournisseur
-            form = SupplierForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('supplier_list')
-
+def supplier(request):
+    username = request.COOKIES.get('username', None)
     suppliers = Supplier.objects.all()
-    return render(request, 'supplier_list.html', {'suppliers': suppliers})
+    
+    return render(request, 'supplier.html', {'username': username, 'suppliers': suppliers})
 
-def supplier_delete(request, pk):
-    supplier = get_object_or_404(Supplier, pk=pk)
+def supplier_add(request):
+
+
+    return redirect('supplier')
+
+def supplier_edit(request, id):
+
+
+    return redirect('supplier')
+
+def supplier_delete(id):
+    supplier = get_object_or_404(Supplier, pk=id)
     supplier.delete()
-    return redirect('supplier_list')
 
-import json
-
-def supplier_view(request):
-    suppliers = list(Supplier.objects.values('name', 'performance_score'))
-    suppliers_json = json.dumps(suppliers)  # Sérialisation en JSON
-    return render(request, 'template.html', {'suppliers_json': suppliers_json})
+    return redirect('supplier')
 
 
-def order_management_view(request):
+def supplier_command(request):
+    username = request.COOKIES.get('username', None)
     suppliers = Supplier.objects.all()
-    return render(request, 'order_management.html', {'suppliers': suppliers})
 
-def update_quantity(request, supplier_id):
-    if request.method == 'POST':
-        supplier = get_object_or_404(Supplier, pk=supplier_id)
-        data = request.POST
-        action = data.get('action')
-        if action == 'increase':
-            supplier.quantity_purchased += 1
-        elif action == 'decrease' and supplier.quantity_purchased > 0:
-            supplier.quantity_purchased -= 1
-        supplier.save()
-        return JsonResponse({'quantity': supplier.quantity_purchased})
+    return render(request, 'supplier_command.html', {'username': username, 'suppliers': suppliers})
 
-def update_order_date(request, supplier_id):
-    if request.method == 'POST':
-        supplier = get_object_or_404(Supplier, pk=supplier_id)
-        data = request.POST
-        next_order_date = data.get('next_order_date')
-        if next_order_date:
-            supplier.next_order_date = next_order_date
-            supplier.save()
-        return JsonResponse({'next_order_date': supplier.next_order_date})
+def supplier_order(supplier_id):
+    supplier = get_object_or_404(Supplier, pk=supplier_id)
+    supplier.quantity_purchased += 1
+    supplier.save()
+
+    return JsonResponse({'quantity_purchased': supplier.quantity_purchased})
     
 
-def feedback_management_view(request):
+def feedback(request):
+    username = request.COOKIES.get('username', None)
     feedbacks = CustomerFeedback.objects.all()
-    return render(request, 'feedback_management.html', {'feedbacks': feedbacks})
 
-def respond_to_feedback(request, feedback_id):
+    return render(request, 'feedback.html', {'username': username, 'feedbacks': feedbacks})
+
+def feedback_response(request, feedback_id):
     if request.method == 'POST':
         feedback = get_object_or_404(CustomerFeedback, pk=feedback_id)
         response = request.POST.get('response')

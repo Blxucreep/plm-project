@@ -4,44 +4,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de bord</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <!-- Ajouter Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
 
-    <main>
-        <section id="dashboard">
-            <h2>Statistiques</h2>
-            <canvas id="salesChart"></canvas>
-        </section>
-    </main>
+    <section class="banner">
+        <h2>Dashboard</h2>
+        <p>Visualisez et analysez les performances de vos produits.</p>
+    </section>
+
+    <section class="dashboard-container">
+        <div class="controls">
+            <label for="x-axis">X-axis</label>
+            <select id="x-axis" name="x-axis">
+                <option value="time" {% if x_axis == "time" %}selected{% endif %}>Time</option>
+                <option value="status" {% if x_axis == "status" %}selected{% endif %}>Status</option>
+            </select>
+
+            <label for="y-axis">Y-axis</label>
+            <select id="y-axis" name="y-axis">
+                <option value="sales" {% if y_axis == "sales" %}selected{% endif %}>Sales</option>
+                <option value="commands" {% if x_axis == "commands" %}selected{% endif %}>Commands</option>
+                <option value="number" {% if y_axis == "number" %}selected{% endif %}>Number</option>
+            </select>
+
+            <button id="create-chart" class="btn-primary">Create the chart</button> <!-- Ajouter l'ID au bouton -->
+        </div>
+
+        <div class="chart-container">
+            <h3>Chart of your data</h3>
+            <canvas id="chart"></canvas> <!-- Espace pour afficher le graphique -->
+        </div>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </section>
 
     {% include 'footer.html' %}
 
     <script>
-        const ctx = document.getElementById('salesChart').getContext('2d');
-        const salesChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
-                datasets: [{
-                    label: 'Ventes (en €)',
-                    data: [500, 1000, 750, 1250, 900, 1100],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        // function to generate the chart
+        function generateChart(data, xAxis, yAxis) {
+            const parsedData = JSON.parse(data);
+            const labels = parsedData.map(item => item[xAxis]);
+            const values = parsedData.map(item => item[yAxis]);
+
+            // create the chart
+            const ctx = document.getElementById('chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `${yAxis} in function of ${xAxis}`,
+                        data: values,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: xAxis.charAt(0).toUpperCase() + xAxis.slice(1)
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: yAxis.charAt(0).toUpperCase() + yAxis.slice(1)
+                            }
+                        }
                     }
                 }
+            });
+        }
+
+        // function to prepare the chart (when the button is clicked)
+        function prepareChart() {
+            const xAxis = document.getElementById('x-axis').value;
+            const yAxis = document.getElementById('y-axis').value;
+
+            // Combinations valides
+            const validCombinations = [
+                { x: 'time', y: 'sales' },
+                { x: 'time', y: 'commands' },
+                { x: 'status', y: 'number' },
+            ];
+
+            const isValidCombination = validCombinations.some(combination => 
+                combination.x === xAxis && combination.y === yAxis
+            );
+
+            if (isValidCombination) {
+                alert(`Generating chart for X: ${xAxis} and Y: ${yAxis}`);
+                window.location.href = `?x-axis=${xAxis}&y-axis=${yAxis}`;
+            } else {
+                alert('Invalid combination');
             }
-        });
+        }
+
+        // onload function to generate the chart if data is available
+        window.onload = function() {
+            const data = "{{ data|escapejs }}";
+            const xAxis = "{{ x_axis }}";
+            const yAxis = "{{ y_axis }}";
+
+            if (data && xAxis && yAxis) {
+                generateChart(data, xAxis, yAxis);
+            }
+
+            const button = document.getElementById('create-chart');
+            if (button) {
+                button.addEventListener('click', prepareChart);
+            }
+        };
     </script>
 </body>
 </html>

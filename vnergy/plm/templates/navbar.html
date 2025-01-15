@@ -15,9 +15,9 @@
                 <a href="{% url 'home' %}" class="navbar-link">Home</a>
                 {% if username %}
                     <a href="{% url 'dashboard' %}" class="navbar-link">Dashboard</a>
-                    <a href="{% url 'supplier_list' %}" class="navbar-link">Fournisseurs</a>
-                    <a href="{% url 'order_management' %}" class="navbar-link">Gestion des commandes</a>
-                    <a href="{% url 'feedback_management' %}" class="navbar-link">Avis clients</a>
+                    <a href="{% url 'supplier' %}" class="navbar-link">Suppliers</a>
+                    <a href="{% url 'supplier_command' %}" class="navbar-link">Commands</a>
+                    <a href="{% url 'feedback' %}" class="navbar-link">Feedbacks</a>
                 {% endif %}
             </div>
             <div class="navbar-right">
