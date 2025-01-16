@@ -51,8 +51,17 @@
         // function to generate the chart
         function generateChart(data, xAxis, yAxis) {
             const parsedData = JSON.parse(data);
-            const labels = parsedData.map(item => item[xAxis]);
+            labels = parsedData.map(item => item[xAxis]);
             const values = parsedData.map(item => item[yAxis]);
+
+            // if the x-axis is time
+            if (xAxis === 'time') {
+                // convert the labels to dates
+                labels = labels.map(label => new Date(label).toLocaleDateString());
+
+                // sort the labels
+                labels = labels.sort((a, b) => new Date(a) - new Date(b));
+            }
 
             // create the chart
             const ctx = document.getElementById('chart').getContext('2d');
