@@ -203,12 +203,100 @@
         }
     },
     {
+        "model": "plm.deliveryoptions",
+        "pk": 6,
+        "fields": {
+            "delivery_id": 6,
+            "delivery_date": "2025-01-10",
+            "delivery_address": "456 Avenue des Étoiles",
+            "delivery_postal_code": "75002",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 7,
+        "fields": {
+            "delivery_id": 7,
+            "delivery_date": "2025-01-11",
+            "delivery_address": "789 Boulevard du Soleil",
+            "delivery_postal_code": "75003",
+            "option": "Express"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 8,
+        "fields": {
+            "delivery_id": 8,
+            "delivery_date": "2025-01-12",
+            "delivery_address": "505 Boulevard des Forêts",
+            "delivery_postal_code": "75008",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 9,
+        "fields": {
+            "delivery_id": 9,
+            "delivery_date": "2025-01-13",
+            "delivery_address": "404 Avenue des Rivières",
+            "delivery_postal_code": "75007",
+            "option": "Express"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 10,
+        "fields": {
+            "delivery_id": 10,
+            "delivery_date": "2025-01-14",
+            "delivery_address": "303 Rue des Montagnes",
+            "delivery_postal_code": "75006",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 11,
+        "fields": {
+            "delivery_id": 11,
+            "delivery_date": "2025-01-15",
+            "delivery_address": "2020 Avenue des Nuages",
+            "delivery_postal_code": "75005",
+            "option": "Standard"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 12,
+        "fields": {
+            "delivery_id": 12,
+            "delivery_date": "2025-01-16",
+            "delivery_address": "606 Rue des Champs",
+            "delivery_postal_code": "75009",
+            "option": "Express"
+        }
+    },
+    {
+        "model": "plm.deliveryoptions",
+        "pk": 13,
+        "fields": {
+            "delivery_id": 13,
+            "delivery_date": "2025-01-17",
+            "delivery_address": "123 Rue des Fleurs",
+            "delivery_postal_code": "75001",
+            "option": "Standard"
+        }
+    },
+    {
         "model": "plm.orders",
         "pk": 1,
         "fields": {
             "order_id": 1,
             "order_date": "2021-01-01",
-            "total_price": 15.7,
+            "total_price": 20.4,
             "status": "Delivered",
             "email": "john.doe@email.com",
             "card": "1234567891234567",
@@ -221,7 +309,7 @@
         "fields": {
             "order_id": 2,
             "order_date": "2023-01-01",
-            "total_price": 14.32,
+            "total_price": 10.2,
             "status": "Delivered",
             "email": "emma.martin@email.com",
             "card": "1234567891234567",
@@ -234,7 +322,7 @@
         "fields": {
             "order_id": 3,
             "order_date": "2022-04-28",
-            "total_price": 12.5,
+            "total_price": 14.35,
             "status": "Delivered",
             "email": "charlie.brown@email.com",
             "card": "1234567891234567",
@@ -247,7 +335,7 @@
         "fields": {
             "order_id": 4,
             "order_date": "2022-10-13",
-            "total_price": 34.12,
+            "total_price": 5.1,
             "status": "Delivered",
             "email": "sophia.thomas@email.com",
             "card": "1234567891234567",
@@ -260,11 +348,115 @@
         "fields": {
             "order_id": 5,
             "order_date": "2021-12-24",
-            "total_price": 20.0,
+            "total_price": 28.7,
             "status": "Delivered",
             "email": "liam.jackson@email.com",
             "card": "1234567891234567",
             "delivery_id": 5
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 6,
+        "fields": {
+            "order_id": 6,
+            "order_date": "2025-01-01",
+            "total_price": 15.3,
+            "status": "Pending",
+            "email": "jane.smith@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 6
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 7,
+        "fields": {
+            "order_id": 7,
+            "order_date": "2025-01-02",
+            "total_price": 7.65,
+            "status": "Pending",
+            "email": "alice.johnson@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 7
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 8,
+        "fields": {
+            "order_id": 8,
+            "order_date": "2025-01-03",
+            "total_price": 12.5,
+            "status": "Pending",
+            "email": "michael.davis@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 8
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 9,
+        "fields": {
+            "order_id": 9,
+            "order_date": "2025-01-04",
+            "total_price": 20.4,
+            "status": "Confirmed",
+            "email": "olivia.white@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 9
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 10,
+        "fields": {
+            "order_id": 10,
+            "order_date": "2025-01-05",
+            "total_price": 17.85,
+            "status": "Confirmed",
+            "email": "charlie.brown@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 10
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 11,
+        "fields": {
+            "order_id": 11,
+            "order_date": "2025-01-06",
+            "total_price": 25.6,
+            "status": "In Transit",
+            "email": "emma.martin@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 11
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 12,
+        "fields": {
+            "order_id": 12,
+            "order_date": "2025-01-07",
+            "total_price": 19.8,
+            "status": "In Transit",
+            "email": "sophia.thomas@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 12
+        }
+    },
+    {
+        "model": "plm.orders",
+        "pk": 13,
+        "fields": {
+            "order_id": 13,
+            "order_date": "2025-01-08",
+            "total_price": 9.6,
+            "status": "Cancelled",
+            "email": "john.doe@email.com",
+            "card": "1234567891234567",
+            "delivery_id": 13
         }
     },
     {
@@ -349,6 +541,87 @@
         }
     },
     {
+        "model": "plm.iscomposed",
+        "pk": 7,
+        "fields": {
+            "order_id": 6,
+            "item_id": 1,
+            "quantity": 3
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 8,
+        "fields": {
+            "order_id": 6,
+            "item_id": 2,
+            "quantity": 2
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 9,
+        "fields": {
+            "order_id": 7,
+            "item_id": 3,
+            "quantity": 3
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 10,
+        "fields": {
+            "order_id": 8,
+            "item_id": 1,
+            "quantity": 5
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 11,
+        "fields": {
+            "order_id": 9,
+            "item_id": 2,
+            "quantity": 6
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 12,
+        "fields": {
+            "order_id": 10,
+            "item_id": 1,
+            "quantity": 7
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 13,
+        "fields": {
+            "order_id": 11,
+            "item_id": 3,
+            "quantity": 9
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 14,
+        "fields": {
+            "order_id": 12,
+            "item_id": 2,
+            "quantity": 8
+        }
+    },
+    {
+        "model": "plm.iscomposed",
+        "pk": 15,
+        "fields": {
+            "order_id": 13,
+            "item_id": 1,
+            "quantity": 2
+        }
+    },
+    {
         "model": "plm.warehouses",
         "pk": 1,
         "fields": {
@@ -384,7 +657,7 @@
         "fields": {
             "item_id": 1,
             "warehouse_id": 1,
-            "quantity": 200
+            "quantity": 500
         }
     },
     {
@@ -392,8 +665,8 @@
         "pk": 2,
         "fields": {
             "item_id": 2,
-            "warehouse_id": 1,
-            "quantity": 500
+            "warehouse_id": 2,
+            "quantity": 1000
         }
     },
     {
@@ -401,62 +674,8 @@
         "pk": 3,
         "fields": {
             "item_id": 3,
-            "warehouse_id": 1,
-            "quantity": 100
-        }
-    },
-    {
-        "model": "plm.stocked",
-        "pk": 4,
-        "fields": {
-            "item_id": 1,
-            "warehouse_id": 2,
-            "quantity": 300
-        }
-    },
-    {
-        "model": "plm.stocked",
-        "pk": 5,
-        "fields": {
-            "item_id": 2,
-            "warehouse_id": 2,
-            "quantity": 400
-        }
-    },
-    {
-        "model": "plm.stocked",
-        "pk": 6,
-        "fields": {
-            "item_id": 3,
-            "warehouse_id": 2,
+            "warehouse_id": 3,
             "quantity": 150
-        }
-    },
-    {
-        "model": "plm.stocked",
-        "pk": 7,
-        "fields": {
-            "item_id": 1,
-            "warehouse_id": 3,
-            "quantity": 100
-        }
-    },
-    {
-        "model": "plm.stocked",
-        "pk": 8,
-        "fields": {
-            "item_id": 2,
-            "warehouse_id": 3,
-            "quantity": 200
-        }
-    },
-    {
-        "model": "plm.stocked",
-        "pk": 9,
-        "fields": {
-            "item_id": 3,
-            "warehouse_id": 3,
-            "quantity": 50
         }
     },
     {

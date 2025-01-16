@@ -1,4 +1,4 @@
-/* SUPPLIER COMMAND */
+/* SALE */
 .container {
     width: 90%;
     max-width: 1200px;
@@ -34,15 +34,6 @@
     background-color: var(--hover-color);
     color: white;
 }
-.order-management input[type="date"] {
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid var(--background-color);
-    border-radius: 5px;
-}
-form {
-    display: inline;
-}
 form button {
     padding: 10px 15px;
     border: none;
@@ -53,4 +44,22 @@ form button {
 }
 form button:hover {
     background-color: var(--hover-color);
+}
+.archived {
+    color: grey;
+    font-style: italic;
+}
+.status-dropdown summary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.status-dropdown[open] summary::after {
+    content: "▲";
+    margin-left: 10px;
+}
+.status-dropdown summary::after {
+    content: "▼";
+    margin-left: 10px;
 }

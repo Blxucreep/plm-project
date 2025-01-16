@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commands</title>
+    <title>Manufacture</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
-    <link rel="stylesheet" href="{% static 'supplier_command.css' %}">
+    <link rel="stylesheet" href="{% static 'manufacture.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
 
     <section class="banner">
-        <h2>Commands</h2>
-        <p>Follow and manage your supplier orders.</p>
+        <h2>Manufacture</h2>
+        <p>Supply your products and manufacture cans.</p>
     </section>
 
     <main class="container">
@@ -25,14 +25,14 @@
                         <th>Product</th>
                         <th>For item ID</th>
                         <th>Item</th>
-                        <th>From Supplier ID</th>
+                        <th>From supplier ID</th>
                         <th>Supplier</th>
                         <th>Quantity in stock</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for entry in supplies_with_names %}
+                    {% for entry in supplies_with_infos %}
                     <tr>
                         <td>{{ entry.product_name }}</td>
                         <td>{{ entry.item_id }}</td>
@@ -50,6 +50,25 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </section>
+
+        <section class="can-manufacturing">
+            <h2>Manufacture cans</h2>
+
+            <div class="cans">
+                {% for entry in cans %}
+                    <div class="can">
+                        <h3>{{ entry.name }}</h3>
+                        <p>Ingredients: {{ entry.ingredients }}</p>
+                        <p>Quantity: {{ entry.quantity }}</p>
+                        <form method="POST" action="{% url 'manufacture_item' entry.item_id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="can_name" value="{{ entry.name }}">
+                            <button type="submit" class="btn-primary">Produce</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
         </section>
     </main>
 

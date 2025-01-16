@@ -15,8 +15,9 @@
                 <a href="{% url 'home' %}" class="navbar-link">Home</a>
                 {% if username %}
                     <a href="{% url 'dashboard' %}" class="navbar-link">Dashboard</a>
+                    <a href="{% url 'sale' %}" class="navbar-link">Sales</a>
                     <a href="{% url 'supplier' %}" class="navbar-link">Suppliers</a>
-                    <a href="{% url 'supplier_command' %}" class="navbar-link">Commands</a>
+                    <a href="{% url 'manufacture' %}" class="navbar-link">Manufacture</a>
                     <a href="{% url 'feedback' %}" class="navbar-link">Feedbacks</a>
                 {% endif %}
             </div>

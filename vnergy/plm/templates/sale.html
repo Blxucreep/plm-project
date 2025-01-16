@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'sale.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <section class="banner">
+        <h2>Sales</h2>
+        <p>Track and manage your customer orders.</p>
+    </section>
+
+    <main class="container">
+        {% for status, orders in orders_by_status.items %}
+        <section class="order-management">
+            <h2>{{ status|capfirst }}</h2>
+            <details class="status-dropdown" {% if status == "Pending" %}open{% endif %}>
+                <summary>View orders under "{{ status }}"</summary>
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Email</th>
+                            <th>Total price</th>
+                            <th>Items</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in orders %}
+                        <tr>
+                            <td>{{ entry.order_id }}</td>
+                            <td>{{ entry.order_date }}</td>
+                            <td>{{ entry.email }}</td>
+                            <td>{{ entry.total_price }}</td>
+                            <td>
+                                <ul>
+                                    {% for item in entry.items %}
+                                    <li>{{ item.name }} (x{{ item.quantity }}) - €{{ item.price }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>{{ entry.status }}</td>
+                            <td>
+                                {% if entry.status == "Delivered" %}
+                                <span class="archived">Archived</span>
+                                {% else %}
+                                    {% if entry.status == "Cancelled" %}
+                                    <span class="archived">Archived</span>
+                                    {% else %}
+                                        <form method="post" action="{% url 'sale_update_status' entry.order_id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-primary">Advance status</button>
+                                        </form>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </section>
+        {% endfor %}
+    </main>
+
+    {% include 'footer.html' %}
+</body>
+</html>
